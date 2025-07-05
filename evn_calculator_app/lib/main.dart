@@ -141,27 +141,44 @@ class _MyHomePageState extends State<MyHomePage> {
             Divider(height: 10),
             Text("Thanh Tien", style: AppTextStyle.header),
             Padding(
-              padding: const EdgeInsets.only(left: 10.0),
+              padding: const EdgeInsets.only(left: 10.0, right: 10),
               child: Row(
                 children: [
-                  _Item("Tien Dien Chua Thue:", textAlign: TextAlign.left),
-                  _Item("6 599 772", textAlign: TextAlign.right),
+                  _Item(
+                    "Tien Dien Chua Thue:",
+                    textAlign: TextAlign.left,
+                    textStyle: AppTextStyle.boldLabel,
+                  ),
+                  _Item(
+                    "6 599 772",
+                    textAlign: TextAlign.right,
+                    textStyle: AppTextStyle.boldLabel,
+                  ),
                 ],
               ),
             ),
             Divider(height: 10),
             Padding(
-              padding: const EdgeInsets.only(left: 10.0),
+              padding: const EdgeInsets.only(left: 10.0, right: 10),
               child: Row(
                 children: [
-                  _Item("Thue GTGT (8%) tien dien:", textAlign: TextAlign.left),
-                  _Item("527 982", textAlign: TextAlign.right),
+                  _Item(
+                    "Thue GTGT (8%) tien dien:",
+                    textAlign: TextAlign.left,
+                    textStyle: AppTextStyle.boldLabel,
+                  ),
+                  _Item(
+                    "527 982",
+                    textAlign: TextAlign.right,
+                    textStyle: AppTextStyle.boldLabel,
+                  ),
                 ],
               ),
             ),
             Divider(height: 10),
             Padding(
-              padding: const EdgeInsets.only(left: 10.0),
+              padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+
               child: Row(
                 children: [
                   _Item(
