@@ -1,3 +1,5 @@
+import 'package:evn_calculator_app/app_text_style.dart';
+import 'package:evn_calculator_app/strings.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -30,14 +32,12 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: Strings.appName),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
   // how it looks.
@@ -49,32 +49,16 @@ class MyHomePage extends StatefulWidget {
 
   final String title;
 
+  const MyHomePage({super.key, required this.title});
+
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
+    final screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
         // TRY THIS: Try changing the color here to a specific color (to
@@ -83,40 +67,167 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+        title: Center(child: Text(widget.title)),
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
         child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
-          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            const Text('You have pushed the button this many times:'),
             Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
+              Strings.totalPower,
+              textAlign: TextAlign.left,
+              style: AppTextStyle.header,
             ),
+            Container(height: 10),
+            SizedBox(
+              width: screenWidth - 100,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Expanded(
+                    child: TextField(
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'kWh',
+                      ),
+                      keyboardType: TextInputType.numberWithOptions(),
+                      textAlign: TextAlign.end,
+                    ),
+                  ),
+                  VerticalDivider(width: 20),
+                  Expanded(
+                    child: FloatingActionButton(
+                      onPressed: () {
+                        //do something
+                      },
+                      child: Text(Strings.buttonCalculator),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Divider(height: 30),
+            Text(Strings.resultLabel, style: AppTextStyle.header),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                _Item("Bac"),
+                _Item("Don Gia\n(dong/Kwh)"),
+                _Item("San luong\n(kWh)"),
+                _Item("Thanh Tien\n(dong)"),
+              ],
+            ),
+            Divider(height: 10),
+            Row(
+              children: [
+                _Item("1"),
+                _Item("1984"),
+                _Item("52"),
+                _Item("103 168"),
+              ],
+            ),
+            Divider(height: 10),
+            Row(
+              children: [
+                _Item("2"),
+                _Item("1984"),
+                _Item("52"),
+                _Item("103 168"),
+              ],
+            ),
+            Divider(height: 10),
+            Row(
+              children: [
+                _Item("3"),
+                _Item("1984"),
+                _Item("52"),
+                _Item("103 168"),
+              ],
+            ),
+            Divider(height: 10),
+            Row(
+              children: [
+                _Item("4"),
+                _Item("1984"),
+                _Item("52"),
+                _Item("103 168"),
+              ],
+            ),
+            Divider(height: 10),
+            Row(
+              children: [
+                _Item("5"),
+                _Item("1984"),
+                _Item("52"),
+                _Item("103 168"),
+              ],
+            ),
+            Divider(height: 10),
+            Row(
+              children: [
+                _Item("6"),
+                _Item("1984"),
+                _Item("52"),
+                _Item("103 168"),
+              ],
+            ),
+            Divider(height: 10),
+            Text("Thanh Tien", style: AppTextStyle.header),
+            Padding(
+              padding: const EdgeInsets.only(left: 10.0),
+              child: Row(
+                children: [
+                  _Item("Tien Dien Chua Thue", textAlign: TextAlign.left),
+                  _Item("6 599 772", textAlign: TextAlign.right),
+                ],
+              ),
+            ),
+            Divider(height: 10),
+            Padding(
+              padding: const EdgeInsets.only(left: 10.0),
+              child: Row(
+                children: [
+                  _Item("Thue GTGT (8%) tien dien", textAlign: TextAlign.left),
+                  _Item("527 982", textAlign: TextAlign.right),
+                ],
+              ),
+            ),
+            Divider(height: 10),
+            Padding(
+              padding: const EdgeInsets.only(left: 10.0),
+              child: Row(
+                children: [
+                  _Item(
+                    "Tong cong tien thanh toan",
+                    textAlign: TextAlign.left,
+                    textStyle: AppTextStyle.redBoldLabel,
+                  ),
+                  _Item(
+                    "7 127 754",
+                    textAlign: TextAlign.right,
+                    textStyle: AppTextStyle.redBoldLabel,
+                  ),
+                ],
+              ),
+            ),
+            Divider(height: 10),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+}
+
+class _Item extends StatelessWidget {
+  final String data;
+  final TextAlign textAlign;
+  final TextStyle? textStyle;
+  const _Item(this.data, {this.textAlign = TextAlign.center, this.textStyle});
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Text(data, textAlign: textAlign, style: textStyle),
     );
   }
 }
