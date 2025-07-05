@@ -69,53 +69,19 @@ class _MyHomePageState extends State<MyHomePage> {
         // the App.build method, and use it to set our appbar title.
         title: Center(child: Text(widget.title)),
       ),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(8.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Text(
-              Strings.totalPower,
-              textAlign: TextAlign.left,
-              style: AppTextStyle.header,
-            ),
-            Container(height: 10),
-            SizedBox(
-              width: screenWidth - 100,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Expanded(
-                    child: TextField(
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: 'kWh',
-                      ),
-                      keyboardType: TextInputType.numberWithOptions(),
-                      textAlign: TextAlign.end,
-                    ),
-                  ),
-                  VerticalDivider(width: 20),
-                  Expanded(
-                    child: FloatingActionButton(
-                      onPressed: () {
-                        //do something
-                      },
-                      child: Text(Strings.buttonCalculator),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Divider(height: 30),
             Text(Strings.resultLabel, style: AppTextStyle.header),
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                _Item("Bac"),
-                _Item("Don Gia\n(dong/Kwh)"),
-                _Item("San luong\n(kWh)"),
-                _Item("Thanh Tien\n(dong)"),
+                _Item("Bac", textStyle: AppTextStyle.boldLabel),
+                _Item("Don Gia\n(dong/k)", textStyle: AppTextStyle.boldLabel),
+                _Item("San luong\n(kWh)", textStyle: AppTextStyle.boldLabel),
+                _Item("Thanh Tien\n(dong)", textStyle: AppTextStyle.boldLabel),
               ],
             ),
             Divider(height: 10),
@@ -178,7 +144,7 @@ class _MyHomePageState extends State<MyHomePage> {
               padding: const EdgeInsets.only(left: 10.0),
               child: Row(
                 children: [
-                  _Item("Tien Dien Chua Thue", textAlign: TextAlign.left),
+                  _Item("Tien Dien Chua Thue:", textAlign: TextAlign.left),
                   _Item("6 599 772", textAlign: TextAlign.right),
                 ],
               ),
@@ -188,7 +154,7 @@ class _MyHomePageState extends State<MyHomePage> {
               padding: const EdgeInsets.only(left: 10.0),
               child: Row(
                 children: [
-                  _Item("Thue GTGT (8%) tien dien", textAlign: TextAlign.left),
+                  _Item("Thue GTGT (8%) tien dien:", textAlign: TextAlign.left),
                   _Item("527 982", textAlign: TextAlign.right),
                 ],
               ),
@@ -199,7 +165,7 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Row(
                 children: [
                   _Item(
-                    "Tong cong tien thanh toan",
+                    "Tong cong tien thanh toan:",
                     textAlign: TextAlign.left,
                     textStyle: AppTextStyle.redBoldLabel,
                   ),
@@ -211,7 +177,40 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
             ),
-            Divider(height: 10),
+            Divider(height: 30),
+            Text(
+              Strings.totalPower,
+              textAlign: TextAlign.left,
+              style: AppTextStyle.header,
+            ),
+            Container(height: 10),
+            SizedBox(
+              width: screenWidth - 100,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Expanded(
+                    child: TextField(
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'kWh',
+                      ),
+                      keyboardType: TextInputType.numberWithOptions(),
+                      textAlign: TextAlign.end,
+                    ),
+                  ),
+                  VerticalDivider(width: 20),
+                  Expanded(
+                    child: FloatingActionButton(
+                      onPressed: () {
+                        //do something
+                      },
+                      child: Text(Strings.buttonCalculator),
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
