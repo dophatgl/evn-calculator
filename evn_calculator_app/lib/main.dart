@@ -1,4 +1,5 @@
 import 'package:evn_calculator_app/app_text_style.dart';
+import 'package:evn_calculator_app/data.dart';
 import 'package:evn_calculator_app/strings.dart';
 import 'package:flutter/material.dart';
 
@@ -56,6 +57,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final _data = Data(totalkWh: 0);
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -85,59 +87,17 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
             ),
             Divider(height: 10),
-            Row(
-              children: [
-                _Item("1"),
-                _Item("1984"),
-                _Item("52"),
-                _Item("103 168"),
-              ],
-            ),
+            _Row(data: _data.row1),
             Divider(height: 10),
-            Row(
-              children: [
-                _Item("2"),
-                _Item("1984"),
-                _Item("52"),
-                _Item("103 168"),
-              ],
-            ),
+            _Row(data: _data.row2),
             Divider(height: 10),
-            Row(
-              children: [
-                _Item("3"),
-                _Item("1984"),
-                _Item("52"),
-                _Item("103 168"),
-              ],
-            ),
+            _Row(data: _data.row3),
             Divider(height: 10),
-            Row(
-              children: [
-                _Item("4"),
-                _Item("1984"),
-                _Item("52"),
-                _Item("103 168"),
-              ],
-            ),
+            _Row(data: _data.row4),
             Divider(height: 10),
-            Row(
-              children: [
-                _Item("5"),
-                _Item("1984"),
-                _Item("52"),
-                _Item("103 168"),
-              ],
-            ),
+            _Row(data: _data.row5),
             Divider(height: 10),
-            Row(
-              children: [
-                _Item("6"),
-                _Item("1984"),
-                _Item("52"),
-                _Item("103 168"),
-              ],
-            ),
+            _Row(data: _data.row6),
             Divider(height: 10),
             Text("Thanh Tien", style: AppTextStyle.header),
             Padding(
@@ -244,6 +204,23 @@ class _Item extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Text(data, textAlign: textAlign, style: textStyle),
+    );
+  }
+}
+
+class _Row extends StatelessWidget {
+  final RowData _data;
+
+  const _Row({required RowData data}) : _data = data;
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        _Item(_data.bacStr),
+        _Item(_data.donGiaStr),
+        _Item(_data.sanLuongStr),
+        _Item(_data.thanhTienStr),
+      ],
     );
   }
 }
