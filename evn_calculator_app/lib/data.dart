@@ -57,6 +57,7 @@ class EvnRule {
   static final donGiaB5 = 3350;
   static final int maxSanluongB5 = 103;
   static final donGiaB6 = 3460;
+  static final double thueGtgt = 0.08;
 }
 
 class Data {
@@ -110,6 +111,33 @@ class Data {
 
     row6 = RowData(6, count);
   }
+  List<RowData> get _rows {
+    return [row1, row2, row3, row4, row5, row6].toList();
+  }
+
+  double? _tienDienChuaThue;
+  double get tienDienChuaThue {
+    _tienDienChuaThue ??= _rows.map((e) => e.thanhTien.toDouble()).reduce((
+      a,
+      b,
+    ) {
+      return a + b;
+    });
+    return _tienDienChuaThue!;
+  }
+
+  double? _tienThueGtgt;
+  double get tienThueGtgt {
+    _tienThueGtgt ??= tienDienChuaThue * EvnRule.thueGtgt;
+    return _tienThueGtgt!;
+  }
+
+  double? _tongCong;
+  double get tongCong {
+    _tongCong ??= tienDienChuaThue + tienThueGtgt;
+    return _tongCong!;
+  }
+
   @override
   String toString() {
     return [row1, row2, row3, row4, row5, row6].toString();

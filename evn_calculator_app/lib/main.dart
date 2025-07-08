@@ -57,7 +57,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final _data = Data(totalkWh: 0);
+  var _data = Data(totalkWh: 0);
+  final TextEditingController _controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -110,7 +111,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     textStyle: AppTextStyle.boldLabel,
                   ),
                   _Item(
-                    "6 599 772",
+                    _data.tienDienChuaThue.round().toString(),
                     textAlign: TextAlign.right,
                     textStyle: AppTextStyle.boldLabel,
                   ),
@@ -128,7 +129,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     textStyle: AppTextStyle.boldLabel,
                   ),
                   _Item(
-                    "527 982",
+                    _data.tienThueGtgt.round().toString(),
                     textAlign: TextAlign.right,
                     textStyle: AppTextStyle.boldLabel,
                   ),
@@ -147,7 +148,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     textStyle: AppTextStyle.redBoldLabel,
                   ),
                   _Item(
-                    "7 127 754",
+                    _data.tongCong.round().toString(),
                     textAlign: TextAlign.right,
                     textStyle: AppTextStyle.redBoldLabel,
                   ),
@@ -168,6 +169,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 children: [
                   Expanded(
                     child: TextField(
+                      controller: _controller,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         labelText: 'kWh',
@@ -179,9 +181,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   VerticalDivider(width: 20),
                   Expanded(
                     child: FloatingActionButton(
-                      onPressed: () {
-                        //do something
-                      },
+                      onPressed: _handleButtonClick,
                       child: Text(Strings.buttonCalculator),
                     ),
                   ),
@@ -192,6 +192,15 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
     );
+  }
+
+  void _handleButtonClick() {
+    final raw = _controller.text;
+    if (raw.isEmpty) return;
+    final value = int.parse(raw);
+    setState(() {
+      _data = Data(totalkWh: value);
+    });
   }
 }
 
