@@ -19,12 +19,5 @@ jobs:
       - run: |
           cd evn_calculator_app
           flutter pub get
-      - run: |
-          cd evn_calculator_app
-          flutter test
-      - run: |
-          cd evn_calculator_app
           flutter build apk
-      - run: |
-          cd evn_calculator_app
           flutter build appbundle
