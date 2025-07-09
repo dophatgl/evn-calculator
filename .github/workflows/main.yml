@@ -16,8 +16,15 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           flutter-version: 3.32.2
-      - run: cd evn_calculator_app
-      - run: flutter pub get
-      - run: flutter test
-      - run: flutter build apk
-      - run: flutter build appbundle
+      - run: |
+          cd evn_calculator_app
+          flutter pub get
+      - run: |
+          cd evn_calculator_app
+          flutter test
+      - run: |
+          cd evn_calculator_app
+          flutter build apk
+      - run: |
+          cd evn_calculator_app
+          flutter build appbundle
