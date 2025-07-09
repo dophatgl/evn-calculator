@@ -24,4 +24,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: release-apk
-          path: evn-calculator/evn_calculator_app/build/app/outputs/flutter-apk/app-release.apk
+          path: evn_calculator_app/build/app/outputs/flutter-apk/app-release.apk
