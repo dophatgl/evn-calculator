@@ -20,4 +20,8 @@ jobs:
           cd evn_calculator_app
           flutter pub get
           flutter build apk
-          flutter build appbundle
+      - name: Upload APK as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-apk
+          path: evn-calculator/evn_calculator_app/build/app/outputs/flutter-apk/app-release.apk
